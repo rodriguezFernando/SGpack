@@ -28,7 +28,7 @@ namespace SenseGloveCs
 				
 				SenseGlove.GetSenseGloves(true);    
 				
-				if (SGCore.SG.SenseGlove.GetSenseGlove(true,out testGloveR)) //retrieves the first Sense Glove it can find. Returns true if one can be found
+				if (SGCore.SG.SenseGlove.GetSenseGlove(true,out testGloveR)) //retrieves the first RIGHT HAND Sense Glove
 				{ 
 				Console.Write("Right-handed SenseGlove calibration : begin.");
 				Console.WriteLine();
