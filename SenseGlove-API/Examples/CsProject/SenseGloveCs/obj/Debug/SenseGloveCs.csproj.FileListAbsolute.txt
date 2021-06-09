@@ -1,0 +1,9 @@
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\obj\Debug\SenseGloveCs.csproj.AssemblyReference.cache
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\obj\Debug\SenseGloveCs.csproj.CoreCompileInputs.cache
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\bin\Debug\SenseGloveCs.exe
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\bin\Debug\SenseGloveCs.pdb
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\bin\Debug\SGCoreCs.dll
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\bin\Debug\SGCoreCs.xml
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\obj\Debug\SenseGloveCs.csproj.CopyComplete
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\obj\Debug\SenseGloveCs.exe
+C:\Users\Uriel Guzmán\Source\Repos\SGpack\SenseGlove-API\Examples\CsProject\SenseGloveCs\obj\Debug\SenseGloveCs.pdb
