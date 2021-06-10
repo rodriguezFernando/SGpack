@@ -16,52 +16,51 @@ namespace SenseGloveCs
 		static void Main(string[] args)
 		{
 			UdpClient client = new UdpClient();
-			client.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.177"), 8080));
-			
+			client.Connect(new IPEndPoint(IPAddress.Parse("192.168.0.177"), 8080)); //Server "connection" 			
 			Console.WriteLine("Testing " + SGCore.Library.Version);
 			Console.WriteLine("=======================================");
 
-			if (SGCore.DeviceList.SenseCommRunning()) //check if the Sense Comm is running. If not, warn the end user.
+			if (SGCore.DeviceList.SenseCommRunning()) //Communication needs to be established
 			{
 				SGCore.SG.SenseGlove testGloveL;
 				SGCore.SG.SenseGlove testGloveR;
-				
+				double R2D = 180/3.1451926;
 				SenseGlove.GetSenseGloves(true);    
 				
-				if (SGCore.SG.SenseGlove.GetSenseGlove(true,out testGloveR)) //retrieves the first RIGHT HAND Sense Glove
+				if (SGCore.SG.SenseGlove.GetSenseGlove(true,out testGloveR)) //retrieves Sense Glove (right hand)
 				{ 
-				Console.Write("Right-handed SenseGlove calibration : begin.");
-				Console.WriteLine();
-				Console.WriteLine("Step 1: Place your hand on a flat surface, like a table, and spread your thumb and fingers.");
-				Console.WriteLine("Once your hand is in the right position, press any key to continue");
-				Console.ReadKey();
-				testGloveR.UpdateCalibrationRange();
-				Console.WriteLine("Step 2: Close your hand into a fist. Make sure your fingers aren't wrapped around your thumb.");
-				Console.WriteLine("Once your hand is in the right position, press any key to continue");
-				Console.ReadKey();
-				SGCore.Kinematics.Vect3D[] minRangeR, maxRangeR;
-				testGloveR.GetCalibrationRange(out minRangeR, out maxRangeR);
-				testGloveR.UpdateCalibrationRange();
-				SGCore.SG.SG_HandProfile HRP = SGCore.SG.SG_HandProfile.Default(true);
-				testGloveR.ApplyCalibration(ref HRP);
+					Console.Write("Right-handed SenseGlove calibration : begin.");
+					Console.WriteLine();
+					Console.WriteLine("Step 1: Place your hand on a flat surface, like a table, and spread your thumb and fingers.");
+					Console.WriteLine("Once your hand is in the right position, press any key to continue");
+					Console.ReadKey();
+					testGloveR.UpdateCalibrationRange();
+					Console.WriteLine("Step 2: Close your hand into a fist. Make sure your fingers aren't wrapped around your thumb.");
+					Console.WriteLine("Once your hand is in the right position, press any key to continue");
+					Console.ReadKey();
+					testGloveR.UpdateCalibrationRange();
+					SGCore.Kinematics.Vect3D[] minRangeR, maxRangeR; //x, y & z vector declaration for right hand
+					testGloveR.GetCalibrationRange(out minRangeR, out maxRangeR);
+					SGCore.SG.SG_HandProfile HRP = SGCore.SG.SG_HandProfile.Default(true);
+					testGloveR.ApplyCalibration(ref HRP);
 				}
 				
-				if (SGCore.SG.SenseGlove.GetSenseGlove(false, out testGloveL)) //retrieves the first Sense Glove it can find. Returns true if one can be found
+				if (SGCore.SG.SenseGlove.GetSenseGlove(false, out testGloveL)) //retrieves Sense Glove (left hand)
 				{
-				Console.Write("Left-handed SenseGlove calibration : begin.");
-				Console.WriteLine();
-				Console.WriteLine("Step 1: Place your hand on a flat surface, like a table, and spread your thumb and fingers.");
-				Console.WriteLine("Once your hand is in the right position, press any key to continue");
-				Console.ReadKey();
-				testGloveL.UpdateCalibrationRange();
-				Console.WriteLine("Step 2: Close your hand into a fist. Make sure your fingers aren't wrapped around your thumb.");
-				Console.WriteLine("Once your hand is in the right position, press any key to continue");
-				Console.ReadKey();
-				SGCore.Kinematics.Vect3D[] minRangeL, maxRangeL;
-				testGloveL.GetCalibrationRange(out minRangeL, out maxRangeL);
-				testGloveL.UpdateCalibrationRange();
-				SGCore.SG.SG_HandProfile HLP = SGCore.SG.SG_HandProfile.Default(false);
-				testGloveL.ApplyCalibration(ref HLP);
+					Console.Write("Left-handed SenseGlove calibration : begin.");
+					Console.WriteLine();
+					Console.WriteLine("Step 1: Place your hand on a flat surface, like a table, and spread your thumb and fingers.");
+					Console.WriteLine("Once your hand is in the right position, press any key to continue");
+					Console.ReadKey();
+					testGloveL.UpdateCalibrationRange();
+					Console.WriteLine("Step 2: Close your hand into a fist. Make sure your fingers aren't wrapped around your thumb.");
+					Console.WriteLine("Once your hand is in the right position, press any key to continue");
+					Console.ReadKey();
+					testGloveR.UpdateCalibrationRange();
+					SGCore.Kinematics.Vect3D[] minRangeL, maxRangeL; //x, y & z vector declaration for left hand
+					testGloveL.GetCalibrationRange(out minRangeL, out maxRangeL);
+					SGCore.SG.SG_HandProfile HLP = SGCore.SG.SG_HandProfile.Default(false);
+					testGloveL.ApplyCalibration(ref HLP);
 				}
 				
 				do
@@ -70,11 +69,11 @@ namespace SenseGloveCs
 					SGCore.SG.SG_SensorData HRSD;
 
 					
-					if (testGloveR.GetSensorData(out HRSD)) //if GetSensorData is true, we have sucesfully recieved data
+					if (testGloveR.GetSensorData(out HRSD)) 
 					{
 						Console.WriteLine("Right hand");
 						string rightData = (HRSD.ToString());
-						System.Threading.Thread.Sleep(5000);
+						System.Threading.Thread.Sleep(50);
 						
 						if (rightData != null)
                         {
@@ -84,11 +83,11 @@ namespace SenseGloveCs
 						}
 					}
 
-					if (testGloveL.GetSensorData(out HLSD)) //if GetSensorData is true, we have sucesfully recieved data
+					if (testGloveL.GetSensorData(out HLSD)) 
 					{
 						Console.WriteLine("Left hand");
 						string leftData = (HLSD.ToString());
-						System.Threading.Thread.Sleep(5000);
+						System.Threading.Thread.Sleep(50);
 						if (leftData != null)
 						{
 							byte[] dataFromL = Encoding.ASCII.GetBytes(leftData);
@@ -97,11 +96,7 @@ namespace SenseGloveCs
 						}
 					}
 
-				else
-					{
-						Console.WriteLine("Could not retrieve a hand pose");
-					}
-				
+
 
 				} while (SGCore.DeviceList.SenseCommRunning());
 			}
