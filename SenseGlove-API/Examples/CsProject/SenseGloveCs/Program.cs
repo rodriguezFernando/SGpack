@@ -36,7 +36,7 @@ namespace SenseGloveCs
 		static void Main(string[] args)
 		{
 			UdpClient client = new UdpClient();
-			client.Connect(new IPEndPoint(IPAddress.Parse("10.0.0.12"), 8080));
+			client.Connect(new IPEndPoint(IPAddress.Parse("192.168.100.63"), 8080));
 
 			Console.WriteLine("Testing " + SGCore.Library.Version);
 			Console.WriteLine("=======================================");
@@ -184,14 +184,14 @@ namespace SenseGloveCs
 									System.Threading.Thread.Sleep(5);
 									//Console.ReadKey();
 
-									/*if (PromeRHandMov != null)
+									if (PromeRHandMov != null)
 									{
 										//byte[] dataFromR = Encoding.ASCII.GetBytes(rightData);
 										byte[] dataFromR2P = Encoding.ASCII.GetBytes(PromeRHandMov);
 										client.Send(dataFromR2P, dataFromR2P.Length);
 										//client.Send(dataFromR, dataFromR.Length);
 										//Console.WriteLine("Data from right hand sent with success");
-									}*/
+									} 
 
 
 										if (testGloveL.GetSensorData(out HLSD)) //if GetSensorData is true, we have sucesfully recieved data
